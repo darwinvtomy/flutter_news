@@ -24,15 +24,15 @@ class ItemModel {
 
   ItemModel.fromJason(Map<String, dynamic> parsedJson)
       : id = parsedJson['id'],
-        deleted = parsedJson['deleted'],
+        deleted = parsedJson['deleted'] ?? false,
         type = parsedJson['type'],
         by = parsedJson['by'],
         time = parsedJson['time'],
-        text = parsedJson['text'],
-        dead = parsedJson['dead'],
+        text = parsedJson['text'] ?? '',
+        dead = parsedJson['dead'] ?? false,
         parent = parsedJson['parent'],
         poll = parsedJson['poll'],
-        kids = parsedJson['kids'],
+        kids = parsedJson['kids'] ?? [],
         url = parsedJson['url'],
         score = parsedJson['score'],
         title = parsedJson['title'],
@@ -54,7 +54,7 @@ class ItemModel {
         score = parsedJson['score'],
         title = parsedJson['title'],
         //  parts = parsedJson['parts'],
-        descendants = parsedJson['descendants'];
+        descendants = parsedJson['descendants'] ?? 0 ;
 
   Map<String, dynamic> toMapForDb() {
     return <String, dynamic>{

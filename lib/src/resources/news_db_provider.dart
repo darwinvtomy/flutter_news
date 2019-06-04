@@ -6,12 +6,12 @@ import 'dart:async';
 import '../models/item_model.dart';
 import 'repository.dart';
 
-class NewsDbProvider implements Source,Cache{
+class NewsDbProvider implements Source, Cache {
   Database db;
 
-   NewsDbProvider(){
-     init();
-   }
+  NewsDbProvider() {
+    init();
+  }
 
   void init() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
@@ -27,6 +27,7 @@ class NewsDbProvider implements Source,Cache{
           time INTEGER,
           text TEXT,
           parent INTEGER,
+          score INTEGER,
           kids BLOB,
           dead INTEGER,
           deleted INTEGER,
@@ -53,8 +54,9 @@ class NewsDbProvider implements Source,Cache{
     return null;
   }
 
- Future<int> addItem(ItemModel item) {
-    return db.insert('Items', item.toMapForDb());
+  Future<int> addItem(ItemModel item) {
+    return db.insert('Items', item.toMapForDb(),
+        conflictAlgorithm: ConflictAlgorithm.ignore);
   }
 
   @override
