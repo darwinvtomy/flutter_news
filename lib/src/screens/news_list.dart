@@ -7,7 +7,6 @@ class NewsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bloc = StoriesProvider.of(context);
-    bloc.fetchTopIds(); //TODO-Have to be Removed
     return Scaffold(
       appBar: AppBar(
         title: Text('Top News'),
