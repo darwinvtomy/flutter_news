@@ -67,10 +67,6 @@ class NewsDetail extends StatelessWidget {
     children.addAll(commentsList);
     return ListView(
       children: children
-      /*<Widget>[
-        buildTitle(item),
-        // ...commentsList, TODO-- This Will work on Latest version of DART and FLUTTER
-      ]*/
       ,
     );
   }

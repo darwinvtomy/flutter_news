@@ -1,7 +1,10 @@
 import 'dart:convert';
 
+import 'dart:math';
+
 class ItemModel {
   final int id; //The item's unique id.
+  final String avathar;
   final bool deleted; //`true` if the item is deleted.
   final String
       type; //The type of item. One of "job", "story", "comment", "poll", or "pollopt".
@@ -24,6 +27,7 @@ class ItemModel {
 
   ItemModel.fromJason(Map<String, dynamic> parsedJson)
       : id = parsedJson['id'],
+        avathar = 'assets/avathar${Random().nextInt(5) + 1}.png',
         deleted = parsedJson['deleted'] ?? false,
         type = parsedJson['type'],
         by = parsedJson['by'] ?? '',
@@ -41,6 +45,7 @@ class ItemModel {
 
   ItemModel.fromDb(Map<String, dynamic> parsedJson)
       : id = parsedJson['id'],
+        avathar = parsedJson['avathar'],
         deleted = parsedJson['deleted'] == 1,
         type = parsedJson['type'],
         by = parsedJson['by'],
@@ -54,11 +59,12 @@ class ItemModel {
         score = parsedJson['score'],
         title = parsedJson['title'],
         //  parts = parsedJson['parts'],
-        descendants = parsedJson['descendants'] ?? 0 ;
+        descendants = parsedJson['descendants'] ?? 0;
 
   Map<String, dynamic> toMapForDb() {
     return <String, dynamic>{
       'id': id,
+      'avathar': avathar,
       'type': type,
       'by': by,
       'time': time,

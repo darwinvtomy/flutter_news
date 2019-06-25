@@ -23,6 +23,7 @@ class NewsDbProvider implements Source, Cache {
         (
           id INTEGER PRIMARY KEY,
           type TEXT,
+          avathar TEXT,
           by TEXT,
           time INTEGER,
           text TEXT,
@@ -64,9 +65,10 @@ class NewsDbProvider implements Source, Cache {
     // TODO: implement fetchTopIds
     return null;
   }
+
   @override
-  Future<int> clear()  {
-   return  db.delete('Items');
+  Future<int> clear() {
+    return db.delete('Items');
   }
 }
 
